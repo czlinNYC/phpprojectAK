@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calc</title>
+  </head>
+  <body>
+    <main id="main">
+      <div id="calc">
+        <button id="one" class="calcButton">1</button>
+        <button id="two" class="calcButton">2</button>
+        <button id="three" class="calcButton">3</button>
+        <button id="four" class="calcButton">4</button>
+        <button id="five" class="calcButton">5</button>
+        <button id="six" class="calcButton">6</button>
+        <button id="seven" class="calcButton">7</button>
+        <button id="eight" class="calcButton">8</button>
+        <button id="nine" class="calcButton">9</button>
+        <button id="zero" class="calcButton">0</button>
+        <button id="subtract" class="calcButton">-</button>
+        <button id="add" class="calcButton">+</button>
+        <button id="calculate" class="calcButton">=</button>
+        <button id="clear" class="calcButton">C</button>
+      </div>
+    </main>
+
+    <script>
+      let buttons = document.getElementsByClassName("calcButton");
+      //   console.log(buttons);
+      Array.prototype.forEach.call(buttons, (button) => {
+        button.addEventListener("click", () => {
+          if (!isNaN(button.innerHTML)) {
+            window.parent.postMessage(["number", button.innerHTML], "*");
+          } else {
+            window.parent.postMessage(["calc", button.innerHTML], "*");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
